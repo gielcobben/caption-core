@@ -1,6 +1,6 @@
 {
   "name": "caption-core",
-  "version": "1.0.0-alpha",
+  "version": "1.0.1-alpha",
   "description": "Download subtitles from multiple sources.",
   "main": "dist/index.js",
   "scripts": {
