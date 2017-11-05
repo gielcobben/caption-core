@@ -1,5 +1,4 @@
 const addic7ed = require("addic7ed-api");
-const { dialog } = require("electron");
 
 const transform = (query, items) => {
   const results = [];
@@ -11,7 +10,7 @@ const transform = (query, items) => {
       extention: "",
       source: "addic7ed",
       size: "",
-      score: 0
+      score: 0,
     };
 
     results.push(result);
@@ -20,7 +19,7 @@ const transform = (query, items) => {
   return results;
 };
 
-const textSearch = async (query, language, limit) => {
+export const textSearch = async (query, language, limit) => {
   const splitQuery = query.match(/s([0-9]{1,2})\s*e([0-9]{1,2})/i);
 
   if (!splitQuery) {
@@ -44,24 +43,8 @@ const textSearch = async (query, language, limit) => {
 
 const fileSearch = async (files, language, limit) => {};
 
-const download = async item => {
-  const mainWindow = global.windows.mainWindow;
-  const path = await new Promise(resolve => {
-    dialog.showSaveDialog(
-      mainWindow,
-      {
-        title: "Download",
-        defaultPath: `${item.name}.srt`
-      },
-      resolve
-    );
-  });
-
-  if (!path) {
-    return;
-  }
-
-  await addic7ed.download(item.download, path);
+export default {
+  fileSearch,
+  download,
+  textSearch,
 };
-
-module.exports = { textSearch, download };

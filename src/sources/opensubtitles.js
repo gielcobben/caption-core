@@ -13,7 +13,7 @@ const transform = items => {
       extention: "",
       source: "opensubtitles",
       size: "",
-      score: item.score
+      score: item.score,
     };
 
     results.push(result);
@@ -22,11 +22,11 @@ const transform = items => {
   return results;
 };
 
-const textSearch = async (query, language, limit) => {
+export const textSearch = async (query, language, limit) => {
   const options = {
     sublanguageid: language,
     limit,
-    query
+    query,
   };
 
   const items = await OpenSubtitles.search(options);
@@ -46,11 +46,11 @@ const textSearch = async (query, language, limit) => {
   return transform(results);
 };
 
-const fileSearch = async (files, language, limit) => {
+export const fileSearch = async (files, language, limit) => {
   const subtitleReferences = files.map(async file => {
     const info = await OpenSubtitles.identify({
       path: file.path,
-      extend: true
+      extend: true,
     });
 
     const options = {
@@ -59,7 +59,7 @@ const fileSearch = async (files, language, limit) => {
       hash: info.moviehash,
       filesize: info.moviebytesize,
       path: file.path,
-      filename: file.filename
+      filename: file.filename,
     };
 
     if (info && info.metadata && info.metadata.imdbid) {
@@ -72,16 +72,19 @@ const fileSearch = async (files, language, limit) => {
 
     return {
       file,
-      subtitle
+      subtitle,
     };
   });
 
   const downloadedReferences = await Promise.all(subtitleReferences);
   const subtitleResults = downloadedReferences.filter(
-    ({ subtitle }) => subtitle !== undefined
+    ({ subtitle }) => subtitle !== undefined,
   );
 
   return subtitleResults;
 };
 
-module.exports = { textSearch, fileSearch };
+export default {
+  textSearch,
+  fileSearch,
+};

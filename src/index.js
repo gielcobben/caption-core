@@ -1,8 +1,8 @@
 const Promise = require("bluebird");
 const { flatMap } = require("lodash");
 
-const addic7ed = require("./sources/addic7ed");
-const opensubtitles = require("./sources/opensubtitles");
+import addic7ed from "./sources/addic7ed";
+import opensubtitles from "./sources/opensubtitles";
 
 class CaptionCore {
   constructor() {

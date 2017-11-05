@@ -9,6 +9,6 @@ export default {
   plugins: [
     json(),
     babel({ exclude: 'node_modules/**' }),
-    includePaths({ paths: ['src'] }),
+    includePaths({ paths: ['src', 'src/sources'] }),
   ],
 };

@@ -11,7 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/gielcobben/caption-core.git"
   },
-  "keywords": ["caption", "subtitles", "opensubtitles", "addic7ed"],
+  "keywords": [
+    "caption",
+    "subtitles",
+    "opensubtitles",
+    "addic7ed"
+  ],
   "author": {
     "name": "Giel Cobben",
     "email": "g.cobben@gmail.com",
@@ -35,8 +40,10 @@
   },
   "homepage": "https://github.com/gielcobben/CaptionCore#readme",
   "dependencies": {
+    "addic7ed-api": "^1.3.2",
     "bluebird": "^3.5.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "opensubtitles-api": "^4.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
