@@ -1,12 +1,13 @@
 {
   "presets": [
     [
-      "env",
+      "latest",
       {
-        "targets": { "node": "7" }
+        "es2015": {
+          "modules": false
+        }
       }
-    ],
-    "stage-0"
+    ]
   ],
-  "plugins": ["transform-runtime", "external-helpers"]
+  "plugins": ["external-helpers", "transform-runtime"]
 }

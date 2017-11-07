@@ -1,14 +1,21 @@
-import json from 'rollup-plugin-json';
-import babel from 'rollup-plugin-babel';
-import includePaths from 'rollup-plugin-includepaths';
+import resolve from "rollup-plugin-node-resolve";
+import babel from "rollup-plugin-babel";
+import commonjs from "rollup-plugin-commonjs";
 
 export default {
-  entry: 'src/index.js',
-  format: 'cjs',
-  dest: 'dist/index.js',
+  input: "src/index.js",
+  output: {
+    format: "cjs",
+    file: "dist/index.js",
+  },
   plugins: [
-    json(),
-    babel({ exclude: 'node_modules/**' }),
-    includePaths({ paths: ['src', 'src/sources'] }),
+    resolve(),
+    commonjs({
+      include: "node_modules/**",
+    }),
+    babel({
+      exclude: "node_modules/**", // only transpile our source code
+      runtimeHelpers: true,
+    }),
   ],
 };

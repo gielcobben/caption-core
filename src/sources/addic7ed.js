@@ -45,6 +45,5 @@ const fileSearch = async (files, language, limit) => {};
 
 export default {
   fileSearch,
-  download,
   textSearch,
 };
