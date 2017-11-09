@@ -1,3 +1,6 @@
+// @flow
+import type { CaptionSource } from './../types/index';
+
 const Promise = require("bluebird");
 const { flatMap } = require("lodash");
 
@@ -5,17 +8,19 @@ import addic7ed from "./sources/addic7ed";
 import opensubtitles from "./sources/opensubtitles";
 
 class CaptionCore {
+  sources: Array<CaptionSource>;
+
   constructor() {
     this.sources = [addic7ed, opensubtitles];
   }
 
-  searchByQuery(query, language = "eng", limit = 10) {
+  searchByQuery(query: string, language: string = "eng", limit: number = 10) {
     const checkSources = this.sources.map(source =>
       source.textSearch(query, language, limit),
     );
 
     return {
-      on(event, callback) {
+      on(event: function, callback: function) {
         switch (event) {
           case "fastest":
             // Wait for first source to finish downloading, return first set of results to renderer.
@@ -46,11 +51,11 @@ class CaptionCore {
     };
   }
 
-  searchByFiles(files = [], language = "eng", limit = 10) {
+  searchByFiles(files: Array<any> = [], language: string = "eng", limit: number = 10) {
     const opensubtitlesRef = opensubtitles.fileSearch(files, language, limit);
 
     return {
-      on(event, callback) {
+      on(event: function, callback: function) {
         switch (event) {
           case "completed":
           default:
