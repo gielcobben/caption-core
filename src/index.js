@@ -15,12 +15,13 @@ class CaptionCore {
   }
 
   searchByQuery(query: string, language: string = "eng", limit: number = 10) {
-    const checkSources = this.sources.map(source =>
-      source.textSearch(query, language, limit),
-    );
+    const checkSources = this.sources.map(source => {
+      console.log('source', source);
+      source.textSearch(query, language, limit);
+    });
 
     return {
-      on(event: function, callback: function) {
+      on(event: void, callback: void) {
         switch (event) {
           case "fastest":
             // Wait for first source to finish downloading, return first set of results to renderer.
@@ -55,7 +56,7 @@ class CaptionCore {
     const opensubtitlesRef = opensubtitles.fileSearch(files, language, limit);
 
     return {
-      on(event: function, callback: function) {
+      on(event: void, callback: void) {
         switch (event) {
           case "completed":
           default:

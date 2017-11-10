@@ -6,7 +6,9 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "rollup -c",
-    "flow": "flow"
+    "flow": "flow",
+    "test": "npm run build && jest",
+    "test:watch": "npm run build && jest --watch"
   },
   "repository": {
     "type": "git",
@@ -55,9 +57,11 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-latest": "^6.24.1",
     "flow-bin": "^0.59.0",
+    "jest": "^21.2.1",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-flow": "^1.1.1",
     "rollup-plugin-node-resolve": "^3.0.0"
   }
 }

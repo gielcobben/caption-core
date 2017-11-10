@@ -1,4 +1,4 @@
 // @flow
-interface CaptionSource {
-    textSearch(): Array<any>;
-  }
+export interface CaptionSource {
+  static textSearch(query: string, language: string, limit: number): Array<any>;
+}
