@@ -10,6 +10,7 @@ export default {
     file: "dist/index.js",
   },
   plugins: [
+    flow(),
     resolve(),
     commonjs({
       include: "node_modules/**",
@@ -18,6 +19,5 @@ export default {
       exclude: "node_modules/**", // only transpile our source code
       runtimeHelpers: true,
     }),
-    flow(),    
   ],
 };
