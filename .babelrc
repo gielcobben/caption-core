@@ -10,5 +10,10 @@
     ],
     "flow"
   ],
-  "plugins": ["external-helpers", "transform-runtime"]
+  "plugins": ["external-helpers", "transform-runtime"],
+  "env": {
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
+    }
+  }
 }

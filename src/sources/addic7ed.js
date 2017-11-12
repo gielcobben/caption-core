@@ -3,7 +3,7 @@ const addic7ed = require("addic7ed-api");
 
 import type { CaptionSource } from "./../../types/index";
 
-export default class Addic7ed implements CaptionSource {
+export default class Addic7edSource implements CaptionSource {
   static transform(query: string, items: Array<any>) {
     const results = [];
 
@@ -42,7 +42,7 @@ export default class Addic7ed implements CaptionSource {
       return [];
     }
 
-    return Addic7ed.transform(query, items);
+    return Addic7edSource.transform(query, items);
   }
 
   static async fileSearch(files: Array<any>, language: string, limit: number) {}

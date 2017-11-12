@@ -16,7 +16,6 @@ class CaptionCore {
 
   searchByQuery(query: string, language: string = "eng", limit: number = 10) {
     const checkSources = this.sources.map(source => {
-      console.log('source', source);
       source.textSearch(query, language, limit);
     });
 
