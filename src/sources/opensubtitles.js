@@ -4,87 +4,93 @@ const { head } = require("lodash");
 
 const OpenSubtitles = new OS("caption");
 
-import type { CaptionSource } from "./../../types/index";
+const transform = (items: Array<any> = []) => {
+  const results = [];
 
-export default class OpenSubtitlesSource implements CaptionSource {
-  static transform(items: Array<any> = []) {
-    const results = [];
-
-    items.map(item => {
-      const result = {
-        name: item.filename,
-        download: item.url,
-        extention: "",
-        source: "opensubtitles",
-        size: "",
-        score: item.score,
-      };
-
-      results.push(result);
-    });
-
-    return results;
-  }
-
-  static async textSearch(query: string, language: string, limit: number) {
-    const options = {
-      sublanguageid: language,
-      limit,
-      query,
+  items.map(item => {
+    const result = {
+      name: item.filename,
+      download: item.url,
+      extention: "",
+      source: "opensubtitles",
+      size: "",
+      score: item.score,
     };
 
-    const items = await OpenSubtitles.search(options);
+    results.push(result);
+  });
 
-    if (!items) {
-      console.log(`Opensubtitles: Nothing found...`);
-      return [];
-    }
+  return results;
+};
 
-    const firstItem = head(Object.keys(items)); // firstItem is selected language: obj[language]
-    const results = items[firstItem];
+const textSearch = async (query: string, language: string, limit: number) => {
+  const options = {
+    sublanguageid: language,
+    limit,
+    query,
+  };
 
-    if (!results) {
-      return [];
-    }
+  const items = await OpenSubtitles.search(options);
 
-    return OpenSubtitlesSource.transform(results);
+  if (!items) {
+    console.log(`Opensubtitles: Nothing found...`);
+    return [];
   }
 
-  static async fileSearch(files: Array<any>, language: string, limit: number) {
-    const subtitleReferences = files.map(async file => {
-      const info = await OpenSubtitles.identify({
-        path: file.path,
-        extend: true,
-      });
+  const firstItem = head(Object.keys(items)); // firstItem is selected language: obj[language]
+  const results = items[firstItem];
 
-      const options = {
-        sublanguageid: language,
-        limit: limit,
-        hash: info.moviehash,
-        filesize: info.moviebytesize,
-        path: file.path,
-        filename: file.filename,
-      };
+  if (!results) {
+    return [];
+  }
 
-      if (info && info.metadata && info.metadata.imdbid) {
-        options["imdbid"] = info.metadata.imdbid;
-      }
+  return transform(results);
+};
 
-      const result = await OpenSubtitles.search(options);
-      const firstItem = head(Object.keys(result));
-      const subtitle = result[firstItem];
-
-      return {
-        file,
-        subtitle,
-      };
+const fileSearch = async (
+  files: Array<any>,
+  language: string,
+  limit: number,
+) => {
+  const subtitleReferences = files.map(async file => {
+    const info = await OpenSubtitles.identify({
+      path: file.path,
+      extend: true,
     });
 
-    const downloadedReferences = await Promise.all(subtitleReferences);
-    const subtitleResults = downloadedReferences.filter(
-      ({ subtitle }) => subtitle !== undefined,
-    );
+    const options = {
+      sublanguageid: language,
+      limit: limit,
+      hash: info.moviehash,
+      filesize: info.moviebytesize,
+      path: file.path,
+      filename: file.filename,
+      imdbid: null,
+    };
 
-    return subtitleResults;
-  }
-}
+    if (info && info.metadata && info.metadata.imdbid) {
+      options["imdbid"] = info.metadata.imdbid;
+    }
+
+    const result = await OpenSubtitles.search(options);
+    const firstItem = head(Object.keys(result));
+    const subtitle = result[firstItem];
+
+    return {
+      file,
+      subtitle,
+    };
+  });
+
+  const downloadedReferences = await Promise.all(subtitleReferences);
+  const subtitleResults = downloadedReferences.filter(
+    ({ subtitle }) => subtitle !== undefined,
+  );
+
+  return subtitleResults;
+};
+
+export default {
+  textSearch,
+  fileSearch,
+};

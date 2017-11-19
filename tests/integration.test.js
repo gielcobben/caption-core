@@ -2,14 +2,23 @@ const CaptionCore = require("./../dist/index");
 
 describe("CaptionCore", () => {
   describe("textSearch", () => {
-    it("integrates", () => {
-      CaptionCore.searchByQuery("Mr Robot S01e02", "eng")
-        .on("fastest", results => {
-          console.log("results", results);
-        })
-        .on("completed", resutls => {
-          console.log("completed", results);
-        });
+    it("retrieves fastests results", done => {
+      CaptionCore.searchByQuery("Mr Robot S01E02", "eng").on(
+        "fastest",
+        results => {
+          expect(results).toMatchSnapshot();
+          done();
+        },
+      );
+    });
+    it("retrieves all results", done => {
+      CaptionCore.searchByQuery("Mr Robot S01E02", "eng").on(
+        "completed",
+        results => {
+          expect(results).toMatchSnapshot();
+          done();
+        },
+      );
     });
   });
 });

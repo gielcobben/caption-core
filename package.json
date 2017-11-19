@@ -7,7 +7,7 @@
     "prepublish": "npm run build",
     "build": "rollup -c",
     "flow": "flow",
-    "test": "NODE_ENV=test jest",
+    "test": "npm run build && NODE_ENV=test jest",
     "test:watch": "npm run build && jest --watch"
   },
   "repository": {

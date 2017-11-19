@@ -1,4 +1,5 @@
 // @flow
-export interface CaptionSource {
-  static textSearch(query: string, language: string, limit: number): Array<any>;
-}
+export type CaptionSource = {
+  textSearch(query: string, language: string, limit: number): any,
+  fileSearch(files: Array<any>, language: string, limit: number): any,
+};
