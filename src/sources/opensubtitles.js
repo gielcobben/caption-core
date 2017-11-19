@@ -1,9 +1,10 @@
+// @flow
 const OS = require("opensubtitles-api");
 const { head } = require("lodash");
 
 const OpenSubtitles = new OS("caption");
 
-const transform = items => {
+const transform = (items: Array<any> = []) => {
   const results = [];
 
   items.map(item => {
@@ -22,7 +23,7 @@ const transform = items => {
   return results;
 };
 
-export const textSearch = async (query, language, limit) => {
+const textSearch = async (query: string, language: string, limit: number) => {
   const options = {
     sublanguageid: language,
     limit,
@@ -46,7 +47,11 @@ export const textSearch = async (query, language, limit) => {
   return transform(results);
 };
 
-export const fileSearch = async (files, language, limit) => {
+const fileSearch = async (
+  files: Array<any>,
+  language: string,
+  limit: number,
+) => {
   const subtitleReferences = files.map(async file => {
     const info = await OpenSubtitles.identify({
       path: file.path,
@@ -60,6 +65,7 @@ export const fileSearch = async (files, language, limit) => {
       filesize: info.moviebytesize,
       path: file.path,
       filename: file.filename,
+      imdbid: null,
     };
 
     if (info && info.metadata && info.metadata.imdbid) {

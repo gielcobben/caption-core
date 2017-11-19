@@ -1,6 +1,7 @@
+// @flow
 const addic7ed = require("addic7ed-api");
 
-const transform = (query, items) => {
+const transform = (query: string, items: Array<any>) => {
   const results = [];
 
   items.map(item => {
@@ -19,7 +20,7 @@ const transform = (query, items) => {
   return results;
 };
 
-export const textSearch = async (query, language, limit) => {
+const textSearch = async (query: string, language: string, limit: number) => {
   const splitQuery = query.match(/s([0-9]{1,2})\s*e([0-9]{1,2})/i);
 
   if (!splitQuery) {
@@ -41,9 +42,13 @@ export const textSearch = async (query, language, limit) => {
   return transform(query, items);
 };
 
-const fileSearch = async (files, language, limit) => {};
+const fileSearch = async (
+  files: Array<any>,
+  language: string,
+  limit: number,
+) => {};
 
 export default {
-  fileSearch,
   textSearch,
+  fileSearch,
 };

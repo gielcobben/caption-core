@@ -5,7 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "npm run build",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "flow": "flow",
+    "test": "npm run build && NODE_ENV=test jest",
+    "test:watch": "npm run build && jest --watch"
   },
   "repository": {
     "type": "git",
@@ -46,14 +49,29 @@
     "opensubtitles-api": "^4.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-jest": "^21.2.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-latest": "^6.24.1",
+    "flow-bin": "^0.59.0",
+    "jest": "^21.2.1",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-flow": "^1.1.1",
     "rollup-plugin-node-resolve": "^3.0.0"
+  },
+  "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "transform": {
+      "^.+\\.js?$": "babel-jest"
+    }
   }
 }

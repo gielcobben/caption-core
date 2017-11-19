@@ -1,6 +1,7 @@
 import resolve from "rollup-plugin-node-resolve";
 import babel from "rollup-plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
+import flow from "rollup-plugin-flow";
 
 export default {
   input: "src/index.js",
@@ -9,6 +10,7 @@ export default {
     file: "dist/index.js",
   },
   plugins: [
+    flow(),
     resolve(),
     commonjs({
       include: "node_modules/**",
