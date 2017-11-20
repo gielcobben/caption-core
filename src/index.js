@@ -1,8 +1,8 @@
 // @flow
 import type { CaptionSource } from "./../types/index";
 
-import Promise from "bluebird";
-import { flatMap } from "lodash";
+const Promise = require("bluebird");
+const { flatMap } = require("lodash");
 
 import addic7ed from "./sources/addic7ed";
 import opensubtitles from "./sources/opensubtitles";
