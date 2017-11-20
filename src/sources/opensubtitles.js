@@ -1,6 +1,7 @@
 // @flow
 const OS = require("opensubtitles-api");
 const { head } = require("lodash");
+const request = require("request-promise-native");
 
 const OpenSubtitles = new OS("caption");
 
@@ -90,7 +91,34 @@ const fileSearch = async (
   return subtitleResults;
 };
 
+const download = (item: any, path: string) => {
+  return new Promise(function(resolve, reject) {
+    request({
+      uri: helpers.addic7edURL + subInfo.link,
+      headers: {
+        Referer: helpers.addic7edURL + (subInfo.referer || "/show/1"),
+      },
+      encoding: null,
+      followRedirect: false,
+      //,jar: j
+    })
+      .then(function(fileContentBuffer) {
+        var fileContent = iconv.decode(fileContentBuffer, "utf8");
+
+        if (~fileContent.indexOf("�")) {
+          // File content seems bad encoded, try to decode again
+          // ---------------------------------------------------
+          fileContent = iconv.decode(fileContentBuffer, "binary");
+        }
+
+        fs.writeFile(filename, fileContent, "utf8", resolve);
+      })
+      .catch(reject);
+  });
+};
+
 export default {
   textSearch,
   fileSearch,
+  download,
 };
