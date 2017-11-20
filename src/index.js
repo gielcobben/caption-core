@@ -20,7 +20,7 @@ class CaptionCore {
     });
 
     return {
-      on(event: void, callback: function = () => {}) {
+      on(event: string, callback: (Array<any>) => void) {
         switch (event) {
           case "fastest":
             // Wait for first source to finish downloading, return first set of results to renderer.
@@ -59,7 +59,7 @@ class CaptionCore {
     const opensubtitlesRef = opensubtitles.fileSearch(files, language, limit);
 
     return {
-      on(event: void, callback: function = () => {}) {
+      on(event: void, callback: (Array<any>) => void) {
         switch (event) {
           case "completed":
           default:
@@ -70,6 +70,10 @@ class CaptionCore {
         }
       },
     };
+  }
+
+  download(item: any, filename: string) {
+    return addic7ed.download(item.download, filename);
   }
 }
 

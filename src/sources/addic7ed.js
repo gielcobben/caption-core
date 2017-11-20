@@ -42,6 +42,10 @@ const textSearch = async (query: string, language: string, limit: number) => {
   return transform(query, items);
 };
 
+const download = (subInfo: any, path: string) => {
+  return addic7ed.download(subInfo, path);
+};
+
 const fileSearch = async (
   files: Array<any>,
   language: string,
@@ -51,4 +55,5 @@ const fileSearch = async (
 export default {
   textSearch,
   fileSearch,
+  download,
 };
