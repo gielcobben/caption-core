@@ -2,8 +2,32 @@
 const OS = require("opensubtitles-api");
 const { head } = require("lodash");
 const request = require("request-promise-native");
+const fs = require("fs");
+const iconv = require("iconv-lite");
 
 const OpenSubtitles = new OS("caption");
+
+const download = (item: any, path: string): Promise<any> => {
+  return new Promise(function(resolve, reject) {
+    request({
+      uri: item.downloadUrl,
+      encoding: null,
+      followRedirect: false,
+    })
+      .then(function(fileContentBuffer) {
+        let fileContent = iconv.decode(fileContentBuffer, "utf8");
+
+        if (~fileContent.indexOf("�")) {
+          // File content seems bad encoded, try to decode again
+          // ---------------------------------------------------
+          fileContent = iconv.decode(fileContentBuffer, "binary");
+        }
+
+        fs.writeFile(path, fileContent, "utf8", resolve);
+      })
+      .catch(reject);
+  });
+};
 
 const transform = (items: Array<any> = []) => {
   const results = [];
@@ -11,11 +35,12 @@ const transform = (items: Array<any> = []) => {
   items.map(item => {
     const result = {
       name: item.filename,
-      download: item.url,
+      downloadUrl: item.url,
       extention: "",
       source: "opensubtitles",
       size: "",
       score: item.score,
+      download,
     };
 
     results.push(result);
@@ -89,32 +114,6 @@ const fileSearch = async (
   );
 
   return subtitleResults;
-};
-
-const download = (item: any, path: string) => {
-  return new Promise(function(resolve, reject) {
-    request({
-      uri: helpers.addic7edURL + subInfo.link,
-      headers: {
-        Referer: helpers.addic7edURL + (subInfo.referer || "/show/1"),
-      },
-      encoding: null,
-      followRedirect: false,
-      //,jar: j
-    })
-      .then(function(fileContentBuffer) {
-        var fileContent = iconv.decode(fileContentBuffer, "utf8");
-
-        if (~fileContent.indexOf("�")) {
-          // File content seems bad encoded, try to decode again
-          // ---------------------------------------------------
-          fileContent = iconv.decode(fileContentBuffer, "binary");
-        }
-
-        fs.writeFile(filename, fileContent, "utf8", resolve);
-      })
-      .catch(reject);
-  });
 };
 
 export default {

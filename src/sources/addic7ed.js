@@ -1,17 +1,22 @@
 // @flow
 const addic7ed = require("addic7ed-api");
 
+const download = (item: any, path: string) => {
+  return addic7ed.download(item.subInfo, path);
+};
+
 const transform = (query: string, items: Array<any>) => {
   const results = [];
 
   items.map(item => {
     const result = {
       name: `${query}.${item.distribution}.${item.team}`,
-      download: item,
+      subInfo: item,
       extention: "",
       source: "addic7ed",
       size: "",
       score: 0,
+      download,
     };
 
     results.push(result);
@@ -40,10 +45,6 @@ const textSearch = async (query: string, language: string, limit: number) => {
   }
 
   return transform(query, items);
-};
-
-const download = (subInfo: any, path: string) => {
-  return addic7ed.download(subInfo, path);
 };
 
 const fileSearch = async (
