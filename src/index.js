@@ -73,7 +73,7 @@ class CaptionCore {
   }
 
   download(item: any, filename: string) {
-    return addic7ed.download(item.download, filename);
+    return opensubtitles.download(item, filename);
   }
 }
 
