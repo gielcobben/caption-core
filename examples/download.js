@@ -1,4 +1,4 @@
-const Core = require("./dist/index");
+const Core = require("./../dist/index");
 
 // Test opensubtitles
 Core.download(
@@ -13,10 +13,10 @@ Core.download(
     score: 4,
   },
   "opensubtitles",
-  "/Users/vernon/Movies/opensubs.srt",
+  "/Users/vernon/Movies/opensubtitles.srt",
 );
 
-// test addic7ed
+// Test addic7ed
 Core.download(
   {
     subInfo: {
@@ -35,5 +35,5 @@ Core.download(
     source: "addic7ed",
   },
   "addic7ed",
-  "/Users/vernon/Movies/addic.srt",
+  "/Users/vernon/Movies/addic7ed.srt",
 );
