@@ -72,8 +72,13 @@ class CaptionCore {
     };
   }
 
-  download(item: any, filename: string) {
-    return opensubtitles.download(item, filename);
+  download(item: any, source: string, filename: string) {
+    switch (source) {
+      case "opensubtitles":
+        return opensubtitles.download(item, filename);
+      case "addic7ed":
+        return addic7ed.download(item, filename);
+    }
   }
 }
 
