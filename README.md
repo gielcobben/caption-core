@@ -11,7 +11,7 @@
   <img src="https://gielcobben.com/github/caption-core/github_cover.png?v=2" width="840" alt="banner" draggable="false">
   <br>
   <h6 align="center">INTRODUCTION</h6>
-  <p align="center">Download subtitles from multiple sources.</p>
+  <p align="center">Caption Core acts as an abstraction layer for Caption’s core functionality. This allows third parties to add new sources or update existing ones. By introducing a simple but powerful API, all other modules that rely on Caption’s core will be able to upgrade smoothly.</p>
   <p align="center"><a href="https://github.com/gielcobben/caption">View Caption.</a></p>
 </p>
 
