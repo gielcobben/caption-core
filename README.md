@@ -202,4 +202,4 @@ Caption.download(
 
 ## 🔑 License
 
-[MIT](https://github.com/gielcobben/Caption/blob/master/LICENSE) © [https://twitter.com/gielcobben](Giel Cobben) & [https://twitter.com/vernon_dg](Vernon de Goede)
+[MIT](https://github.com/gielcobben/Caption/blob/master/LICENSE) © [Giel Cobben](https://twitter.com/gielcobben) & [Vernon de Goede](https://twitter.com/vernon_dg)
