@@ -1,6 +1,6 @@
 const Core = require("./../dist/index");
 
-// Test opensubtitles
+// Download for opensubtitles
 Core.download(
   {
     name:
@@ -16,7 +16,7 @@ Core.download(
   "/Users/vernon/Movies/opensubtitles.srt",
 );
 
-// Test addic7ed
+// Download for addic7ed
 Core.download(
   {
     subInfo: {
