@@ -16,18 +16,55 @@
 </p>
 
 <br>
+
+## 🛠 Install
+
+###### Setup:
+
+* `npm install --save caption-core`
+
+###### Include:
+
+* `import Caption from "caption-core";`
+  or:
+* `const Caption = require("caption-core");`
+
+## ⚡️ Contribute
+
+Caption Core is completely open-source. We've tried to make it as easy as possible to
+contribute. If you'd like to help out by adding sources or assisting in other parts of development, here's how to get started:
+
+###### To begin working locally:
+
+1. [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your
+   own GitHub account
+2. [Clone](https://help.github.com/articles/cloning-a-repository/) it to your
+   local device: `git clone git@github.com:gielcobben/caption-core.git`
+3. Install the dependencies: `npm install`
+4. Built the code and watch for changes:
+   `npm run build`
+5. Vernon check dit even.
+
 <br>
 
-## 🔌 Supported sources:
+## 📦 Sources
 
-* [x] opensubtitles
-* [x] addic7ed
+Caption currently uses 2 sources to gather subtitles. We're continuously adding
+sources, but the app's open-source nature also allows you to add your own when
+desired.
+
+###### Standard sources:
+
+* [x] OpenSubtitles
+* [x] Addic7ed
 
 <br>
+
+## Install core
 
 ## 🔎 Search by query
 
-##### Code:
+###### Code:
 
 ```js
 const Caption = require("caption-core");
@@ -44,7 +81,7 @@ Caption.searchByQuery("Comedians in Cars", ENGLISH, LIMIT)
   });
 ```
 
-##### Output:
+###### Output:
 
 ```js
 [
@@ -71,7 +108,7 @@ Caption.searchByQuery("Comedians in Cars", ENGLISH, LIMIT)
 
 ## 🎞 Search by file
 
-##### Code:
+###### Code:
 
 ```js
 const Caption = require("caption-core");
@@ -91,7 +128,7 @@ Caption.searchByFile(
 });
 ```
 
-##### Output:
+###### Output:
 
 ```js
 [
@@ -118,7 +155,7 @@ Caption.searchByFile(
 
 ## 📺 Download subtitle
 
-##### Code:
+###### Code:
 
 ```js
 const Caption = require("caption-core");
@@ -139,6 +176,20 @@ Caption.download(
 
 <br>
 
+## ⭐️ Links
+
+####### Authors:
+
+* [Giel Cobben](https://github.com/gielcobben)
+* [Vernon de Goede](https://github.com/vernondegoede)
+
+####### Repositories:
+
+* [Caption Core](https://github.com/gielcobben/caption-core)
+* [Caption Website](https://github.com/gielcobben/getcaption.co)
+
+<br>
+
 ## 🔑 License
 
-[MIT](https://github.com/gielcobben/Caption/blob/master/LICENSE) © Giel Cobben & Vernon de Goede
+[MIT](https://github.com/gielcobben/Caption/blob/master/LICENSE) © [https://twitter.com/gielcobben](Giel Cobben) & [https://twitter.com/vernon_dg](Vernon de Goede)
