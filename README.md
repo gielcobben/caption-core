@@ -21,13 +21,23 @@
 
 ###### Setup:
 
-* `npm install --save caption-core`
+```
+npm install --save caption-core
+```
 
 ###### Include:
 
-* `import Caption from "caption-core";`
-  or:
-* `const Caption = require("caption-core");`
+```js
+import Caption from "caption-core";
+```
+
+or :
+
+```js
+const Caption = require("caption-core");
+```
+
+<br>
 
 ## ⚡️ Contribute
 
