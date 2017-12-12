@@ -31,7 +31,7 @@ npm install --save caption-core
 import Caption from "caption-core";
 ```
 
-or :
+###### or:
 
 ```js
 const Caption = require("caption-core");
@@ -188,12 +188,12 @@ Caption.download(
 
 ## ⭐️ Links
 
-####### Authors:
+###### Authors:
 
 * [Giel Cobben](https://github.com/gielcobben)
 * [Vernon de Goede](https://github.com/vernondegoede)
 
-####### Repositories:
+###### Repositories:
 
 * [Caption Core](https://github.com/gielcobben/caption-core)
 * [Caption Website](https://github.com/gielcobben/getcaption.co)
