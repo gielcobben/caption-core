@@ -70,8 +70,6 @@ desired.
 
 <br>
 
-## Install core
-
 ## 🔎 Search by query
 
 ###### Code:
