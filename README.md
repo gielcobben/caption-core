@@ -8,7 +8,7 @@
 <br>
 
 <p align="center">  
-  <img src="https://gielcobben.com/github/caption-core/github_cover.png" width="840" alt="banner" draggable="false">
+  <img src="https://gielcobben.com/github/caption-core/github_cover.png?v=2" width="840" alt="banner" draggable="false">
   <br>
   <h6 align="center">INTRODUCTION</h6>
   <p align="center">Download subtitles from multiple sources.</p>
@@ -16,11 +16,14 @@
 </p>
 
 <br>
+<br>
 
 ## 🔌 Supported sources:
 
 * [x] opensubtitles
 * [x] addic7ed
+
+<br>
 
 ## 🔎 Search by query
 
@@ -57,12 +60,14 @@ Caption.searchByQuery("Comedians in Cars", ENGLISH, LIMIT)
     name: "Comedians in Cars.1080p.WEB-DL.H264.srt",
     download: "http://dl.opensubtitles.org/en/download/...",
     extention: "",
-    source: "addic7ed",
+    source: "opensubtitles",
     size: "",
     score: 3,
   },
 ];
 ```
+
+<br>
 
 ## 🎞 Search by file
 
@@ -75,16 +80,15 @@ const ENGLISH = "eng";
 const LIMIT = 10;
 
 Caption.searchByFile(
-    [
-      "~/Movies/Comedians in Cars.S01E01.mp4",
-      "~/Movies/Comedians in Cars.S01E02.mp4",
-    ],
-    ENGLISH,
-    LIMIT,
-  )
-  .on("completed", subtitles => {
-    // All sources are checked.
-  });
+  [
+    "~/Movies/Comedians in Cars.S01E01.mp4",
+    "~/Movies/Comedians in Cars.S01E02.mp4",
+  ],
+  ENGLISH,
+  LIMIT,
+).on("completed", subtitles => {
+  // All sources are checked.
+});
 ```
 
 ##### Output:
@@ -110,6 +114,8 @@ Caption.searchByFile(
 ];
 ```
 
+<br>
+
 ## 📺 Download subtitle
 
 ##### Code:
@@ -130,6 +136,8 @@ Caption.download(
   "~/Movies/Comedians in Cars.S01E01.srt",
 );
 ```
+
+<br>
 
 ## 🔑 License
 
