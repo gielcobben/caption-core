@@ -75,16 +75,13 @@ const ENGLISH = "eng";
 const LIMIT = 10;
 
 Caption.searchByFile(
-  [
-    "/Movies/Comedians in Cars.S01E01.mp4",
-    "/Movies/Comedians in Cars.S01E02.mp4",
-  ],
-  ENGLISH,
-  LIMIT,
-)
-  .on("fastest", subtitles => {
-    // Fastest source has been checked.
-  })
+    [
+      "~/Movies/Comedians in Cars.S01E01.mp4",
+      "~/Movies/Comedians in Cars.S01E02.mp4",
+    ],
+    ENGLISH,
+    LIMIT,
+  )
   .on("completed", subtitles => {
     // All sources are checked.
   });
@@ -130,10 +127,10 @@ Caption.download(
     score: 4,
   },
   "opensubtitles",
-  "/Movies/Comedians in Cars.S01E01.srt",
+  "~/Movies/Comedians in Cars.S01E01.srt",
 );
 ```
 
 ## 🔑 License
 
-[MIT](https://github.com/gielcobben/Caption/blob/master/LICENSE) © Giel Cobben
+[MIT](https://github.com/gielcobben/Caption/blob/master/LICENSE) © Giel Cobben & Vernon de Goede
