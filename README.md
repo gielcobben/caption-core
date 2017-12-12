@@ -193,7 +193,7 @@ Caption.download(
 
 ###### Repositories:
 
-* [Caption Core](https://github.com/gielcobben/caption-core)
+* [Caption](https://github.com/gielcobben/caption)
 * [Caption Website](https://github.com/gielcobben/getcaption.co)
 
 <br>
