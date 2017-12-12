@@ -25,13 +25,13 @@
 npm install --save caption-core
 ```
 
-###### Include:
+###### ES6
 
 ```js
 import Caption from "caption-core";
 ```
 
-###### or:
+###### CommonJS
 
 ```js
 const Caption = require("caption-core");
@@ -51,9 +51,9 @@ contribute. If you'd like to help out by adding sources or assisting in other pa
 2. [Clone](https://help.github.com/articles/cloning-a-repository/) it to your
    local device: `git clone git@github.com:gielcobben/caption-core.git`
 3. Install the dependencies: `npm install`
-4. Built the code and watch for changes:
+4. Build the module using Rollup:
    `npm run build`
-5. Vernon check dit even.
+5. Run one of the examples: `node examples/search.js`.
 
 <br>
 
