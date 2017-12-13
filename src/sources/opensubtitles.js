@@ -5,7 +5,7 @@ const request = require("request-promise-native");
 const fs = require("fs");
 const iconv = require("iconv-lite");
 
-const OpenSubtitles = new OS("caption");
+const OpenSubtitles = new OS({ssl:true});
 
 const download = (item: any, path: string): Promise<any> => {
   return new Promise(function(resolve, reject) {
