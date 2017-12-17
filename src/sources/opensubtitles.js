@@ -52,11 +52,24 @@ const transform = (items: Array<any> = []) => {
 const textSearch = async (query: string, language: string, limit: number) => {
   const options = {
     sublanguageid: language,
-    limit,
+    limit: "best",
     query,
+    season: 3,
   };
 
+  // // Check if we're searching for a specific season
+  // const containsSeasonSearch = query.match(/S(\d{2})/);
+  // if (containsSeasonSearch) {
+  //   options.season = parseInt(containsSeasonSearch[1]);
+  // }
+
+  // console.log("containsSeasonSearch", containsSeasonSearch);
+
   const items = await OpenSubtitles.search(options);
+
+  if (!items instanceof Array) {
+    items = [items];
+  }
 
   if (!items) {
     console.log(`Opensubtitles: Nothing found...`);
