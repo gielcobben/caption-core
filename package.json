@@ -14,12 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/gielcobben/caption-core.git"
   },
-  "keywords": [
-    "caption",
-    "subtitles",
-    "opensubtitles",
-    "addic7ed"
-  ],
+  "keywords": ["caption", "subtitles", "opensubtitles", "addic7ed"],
   "author": {
     "name": "Giel Cobben",
     "email": "g.cobben@gmail.com",
@@ -49,7 +44,6 @@
     "lodash": "^4.17.4",
     "opensubtitles-api": "^4.0.0",
     "request": "^2.83.0",
-    "request-promise-native": "^1.0.5",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
@@ -70,10 +64,7 @@
     "rollup-plugin-node-resolve": "^3.0.0"
   },
   "jest": {
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ],
+    "moduleDirectories": ["node_modules", "src"],
     "transform": {
       "^.+\\.js?$": "babel-jest"
     }
