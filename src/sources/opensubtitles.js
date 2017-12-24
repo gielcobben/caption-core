@@ -4,7 +4,6 @@ const { head } = require("lodash");
 const request = require("request");
 const zlib = require("zlib");
 const fs = require("fs");
-const iconv = require("iconv-lite");
 
 const OpenSubtitles = new OS({
   useragent: "caption",
