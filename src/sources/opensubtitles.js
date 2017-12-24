@@ -60,8 +60,6 @@ const textSearch = async (query: string, language: string, limit: number) => {
 
   const items = await OpenSubtitles.search(options);
 
-  console.log(items);
-
   if (!items) {
     console.log(`Opensubtitles: Nothing found...`);
     return [];

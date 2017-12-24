@@ -3,10 +3,10 @@ const Core = require("./../dist/index");
 // Download for opensubtitles
 Core.download(
   {
-    name:
-      "Comedians in Cars.eps2.0.unm4sk-pt2.tc.1080p.WEB-DL.DD5.1.H264-NTb.srt",
+    name: "Vikings.S04E03.PROPER.HDTV.x264-KILLERS.srt",
     downloadUrl:
-      "https://dl.opensubtitles.org/en/download/src-api/vrf-19eb0c63/sid-q6VKR7Anw9aCdz1q00QaulMZIta/filead/1953786919.gz",
+      "https://dl.opensubtitles.org/en/download/src-api/vrf-19a90c51/sid-NLc6F2GB58zJLo-Qd8iaELspR-4/filead/1955117623.gz",
+    encoding: "ASCII",
     extention: "",
     source: "opensubtitles",
     size: "",
