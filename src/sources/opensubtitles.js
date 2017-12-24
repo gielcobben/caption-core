@@ -56,9 +56,12 @@ const textSearch = async (query: string, language: string, limit: number) => {
     sublanguageid: language,
     limit,
     query,
+    gzip: true,
   };
 
   const items = await OpenSubtitles.search(options);
+
+  console.log(items);
 
   if (!items) {
     console.log(`Opensubtitles: Nothing found...`);
@@ -94,6 +97,7 @@ const fileSearch = async (
       path: file.path,
       filename: file.filename,
       imdbid: null,
+      gzip: true,
     };
 
     if (info && info.metadata && info.metadata.imdbid) {
