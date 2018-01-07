@@ -3,17 +3,17 @@ const Core = require("./../dist/index");
 // Download for opensubtitles
 Core.download(
   {
-    name:
-      "Comedians in Cars.eps2.0.unm4sk-pt2.tc.1080p.WEB-DL.DD5.1.H264-NTb.srt",
+    name: "Vikings.S04E03.PROPER.HDTV.x264-KILLERS.srt",
     downloadUrl:
-      "http://dl.opensubtitles.org/en/download/src-api/vrf-19bc0c59/sid-NWi9,PbRu-XVfHuV1OQ5jEwcTHd/filead/1955264178",
+      "https://dl.opensubtitles.org/en/download/src-api/vrf-19a90c51/sid-NLc6F2GB58zJLo-Qd8iaELspR-4/filead/1955117623.gz",
+    encoding: "ASCII",
     extention: "",
     source: "opensubtitles",
     size: "",
     score: 4,
   },
   "opensubtitles",
-  "/Users/vernon/Movies/opensubtitles.srt",
+  "/Users/gielcobben/Downloads/opensubtitles.srt",
 );
 
 // Download for addic7ed
@@ -35,5 +35,5 @@ Core.download(
     source: "addic7ed",
   },
   "addic7ed",
-  "/Users/vernon/Movies/addic7ed.srt",
+  "/Users/gielcobben/Downloads/addic7ed.srt",
 );

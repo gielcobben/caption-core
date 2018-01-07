@@ -1,34 +1,31 @@
 // @flow
 const OS = require("opensubtitles-api");
 const { head } = require("lodash");
-const request = require("request-promise-native");
+const request = require("request");
+const zlib = require("zlib");
 const fs = require("fs");
-const iconv = require("iconv-lite");
 
 const OpenSubtitles = new OS({
-  useragent: 'caption',
-  ssl:true
+  useragent: "caption",
+  ssl: true,
 });
 
 const download = (item: any, path: string): Promise<any> => {
   return new Promise(function(resolve, reject) {
-    request({
-      uri: item.downloadUrl,
-      encoding: null,
-      followRedirect: false,
-    })
-      .then(function(fileContentBuffer) {
-        let fileContent = iconv.decode(fileContentBuffer, "utf8");
-
-        if (~fileContent.indexOf("�")) {
-          // File content seems bad encoded, try to decode again
-          // ---------------------------------------------------
-          fileContent = iconv.decode(fileContentBuffer, "binary");
-        }
-
-        fs.writeFile(path, fileContent, "utf8", resolve);
-      })
-      .catch(reject);
+    request(
+      {
+        url: item.downloadUrl,
+        encoding: null,
+      },
+      (error, response, data) => {
+        if (error) throw error;
+        zlib.unzip(data, (error, buffer) => {
+          if (error) throw error;
+          const subtitle_content = buffer.toString(item.encoding);
+          fs.writeFile(path, subtitle_content, item.encoding, resolve);
+        });
+      },
+    );
   });
 };
 
@@ -39,6 +36,7 @@ const transform = (items: Array<any> = []) => {
     const result = {
       name: item.filename,
       downloadUrl: item.url,
+      encoding: item.encoding,
       extention: "",
       source: "opensubtitles",
       size: "",
@@ -57,6 +55,7 @@ const textSearch = async (query: string, language: string, limit: number) => {
     sublanguageid: language,
     limit,
     query,
+    gzip: true,
   };
 
   const items = await OpenSubtitles.search(options);
@@ -95,6 +94,7 @@ const fileSearch = async (
       path: file.path,
       filename: file.filename,
       imdbid: null,
+      gzip: true,
     };
 
     if (info && info.metadata && info.metadata.imdbid) {
