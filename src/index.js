@@ -6,6 +6,7 @@ const { flatMap } = require("lodash");
 
 import addic7ed from "./sources/addic7ed";
 import opensubtitles from "./sources/opensubtitles";
+import thesubdb from "./sources/thesubdb";
 
 class CaptionCore {
   sources: Array<CaptionSource>;
@@ -57,6 +58,7 @@ class CaptionCore {
     limit: number = 10,
   ) {
     const opensubtitlesRef = opensubtitles.fileSearch(files, language, limit);
+    const thesubdbRef = thesubdb.fileSearch(files, language, limit);
 
     return {
       on(event: void, callback: (Array<any>) => void) {
@@ -64,7 +66,7 @@ class CaptionCore {
           case "completed":
           default:
             // First promise which is resolved should return its results
-            Promise.race([opensubtitlesRef]).then(results => callback(results));
+            Promise.race([opensubtitlesRef, thesubdbRef]).then(results => callback(results));
 
             return this;
         }
@@ -78,6 +80,8 @@ class CaptionCore {
         return opensubtitles.download(item, filename);
       case "addic7ed":
         return addic7ed.download(item, filename);
+      case "thesubdb":
+        return thesubdb.download(item);
     }
   }
 }

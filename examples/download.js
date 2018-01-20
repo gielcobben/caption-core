@@ -37,3 +37,9 @@ Core.download(
   "addic7ed",
   "/Users/gielcobben/Downloads/addic7ed.srt",
 );
+
+Core.download(
+  { language: "en", filePath: `${__dirname}/../resources/dexter.mp4` },
+  "thesubdb",
+  `${__dirname}/../resources/dexter.srt`,
+)
