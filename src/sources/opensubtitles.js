@@ -1,6 +1,6 @@
 // @flow
 const OS = require("opensubtitles-api");
-const { head } = require("lodash");
+const { head, merge } = require("lodash");
 const request = require("request");
 const zlib = require("zlib");
 const fs = require("fs");
@@ -14,7 +14,7 @@ const download = (item: any, path: string): Promise<any> => {
   return new Promise(function(resolve, reject) {
     request(
       {
-        url: item.downloadUrl,
+        url: item.subtitle.url,
         encoding: null,
       },
       (error, response, data) => {
@@ -34,8 +34,10 @@ const transform = (items: Array<any> = []) => {
 
   items.map(item => {
     const result = {
+      subtitle: {
+        url: item.url
+      },
       name: item.filename,
-      downloadUrl: item.url,
       encoding: item.encoding,
       extention: "",
       source: "opensubtitles",
@@ -116,7 +118,7 @@ const fileSearch = async (
     ({ subtitle }) => subtitle !== undefined,
   );
 
-  return subtitleResults;
+  return subtitleResults.map(result => merge(result, {'source': 'opensubtitles'}))
 };
 
 export default {

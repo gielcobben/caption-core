@@ -82,6 +82,8 @@ class CaptionCore {
         return addic7ed.download(item, filename);
       case "thesubdb":
         return thesubdb.download(item);
+      default:
+        console.log(`Unknown download source: '${source}'`)
     }
   }
 }

@@ -4,8 +4,9 @@ const Core = require("./../dist/index");
 Core.download(
   {
     name: "Vikings.S04E03.PROPER.HDTV.x264-KILLERS.srt",
-    downloadUrl:
-      "https://dl.opensubtitles.org/en/download/src-api/vrf-19a90c51/sid-NLc6F2GB58zJLo-Qd8iaELspR-4/filead/1955117623.gz",
+    subtitle: {
+      url: "https://dl.opensubtitles.org/en/download/src-api/vrf-19a90c51/sid-NLc6F2GB58zJLo-Qd8iaELspR-4/filead/1955117623.gz"
+    },
     encoding: "ASCII",
     extention: "",
     source: "opensubtitles",
@@ -39,7 +40,7 @@ Core.download(
 );
 
 Core.download(
-  { language: "en", filePath: `${__dirname}/../resources/dexter.mp4` },
+  { language: "en", file: {path: `${__dirname}/../resources/dexter.mp4` }},
   "thesubdb",
   `${__dirname}/../resources/dexter.srt`,
 )
