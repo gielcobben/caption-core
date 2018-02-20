@@ -1,7 +1,8 @@
 // @flow
 const OS = require("opensubtitles-api");
-const { head } = require("lodash");
-const request = require("request-promise-native");
+const { head, merge } = require("lodash");
+const request = require("request");
+const zlib = require("zlib");
 const fs = require("fs");
 const iconv = require("iconv-lite");
 
@@ -12,23 +13,20 @@ const OpenSubtitles = new OS({
 
 const download = (item: any, path: string): Promise<any> => {
   return new Promise(function(resolve, reject) {
-    request({
-      uri: item.downloadUrl,
-      encoding: null,
-      followRedirect: false,
-    })
-      .then(function(fileContentBuffer) {
-        let fileContent = iconv.decode(fileContentBuffer, "utf8");
-
-        if (~fileContent.indexOf("�")) {
-          // File content seems bad encoded, try to decode again
-          // ---------------------------------------------------
-          fileContent = iconv.decode(fileContentBuffer, "binary");
-        }
-
-        fs.writeFile(path, fileContent, "utf8", resolve);
-      })
-      .catch(reject);
+    request(
+      {
+        url: item.subtitle.url,
+        encoding: null,
+      },
+      (error, response, data) => {
+        if (error) throw error;
+        zlib.unzip(data, (error, buffer) => {
+          if (error) throw error;
+          const subtitle_content = buffer.toString(item.encoding);
+          fs.writeFile(path, subtitle_content, item.encoding, resolve);
+        });
+      },
+    );
   });
 };
 
@@ -37,8 +35,11 @@ const transform = (items: Array<any> = []) => {
 
   items.map(item => {
     const result = {
+      subtitle: {
+        url: item.url
+      },
       name: item.filename,
-      downloadUrl: item.url,
+      encoding: item.encoding,
       extention: "",
       source: "opensubtitles",
       size: "",
@@ -116,7 +117,7 @@ const fileSearch = async (
     ({ subtitle }) => subtitle !== undefined,
   );
 
-  return subtitleResults;
+  return subtitleResults.map(result => merge(result, {'source': 'opensubtitles'}))
 };
 
 export default {
