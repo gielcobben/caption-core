@@ -4,10 +4,11 @@ const { head, merge } = require("lodash");
 const request = require("request");
 const zlib = require("zlib");
 const fs = require("fs");
+const iconv = require("iconv-lite");
 
 const OpenSubtitles = new OS({
-  useragent: "caption",
-  ssl: true,
+  useragent: 'caption',
+  ssl:true
 });
 
 const download = (item: any, path: string): Promise<any> => {
@@ -57,7 +58,6 @@ const textSearch = async (query: string, language: string, limit: number) => {
     sublanguageid: language,
     limit,
     query,
-    gzip: true,
   };
 
   const items = await OpenSubtitles.search(options);
@@ -96,7 +96,6 @@ const fileSearch = async (
       path: file.path,
       filename: file.filename,
       imdbid: null,
-      gzip: true,
     };
 
     if (info && info.metadata && info.metadata.imdbid) {

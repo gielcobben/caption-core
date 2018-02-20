@@ -14,7 +14,7 @@ Core.download(
     score: 4,
   },
   "opensubtitles",
-  "/Users/gielcobben/Downloads/opensubtitles.srt",
+  "/Users/vernon/Movies/opensubtitles.srt",
 );
 
 // Download for addic7ed
@@ -36,7 +36,7 @@ Core.download(
     source: "addic7ed",
   },
   "addic7ed",
-  "/Users/gielcobben/Downloads/addic7ed.srt",
+  "/Users/vernon/Movies/addic7ed.srt",
 );
 
 Core.download(
