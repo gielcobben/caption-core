@@ -124,7 +124,7 @@ const Caption = require("caption-core");
 const ENGLISH = "eng";
 const LIMIT = 10;
 
-Caption.searchByFile(
+Caption.searchByFiles(
   [
     "~/Movies/Comedians in Cars.S01E01.mp4",
     "~/Movies/Comedians in Cars.S01E02.mp4",
